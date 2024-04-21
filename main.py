@@ -8,6 +8,8 @@ import pickle
 cam = cv2.VideoCapture(0)
 face_mesh = mp.solutions.face_mesh.FaceMesh(refine_landmarks=True)
 
+# commented parts are for dataset generation ( need to commnet out model loading and predicting part )
+
 # i = 0
 # csv_file = open("data.csv", 'a')
 # label = 'no'
