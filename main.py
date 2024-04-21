@@ -8,9 +8,9 @@ import pickle
 cam = cv2.VideoCapture(0)
 face_mesh = mp.solutions.face_mesh.FaceMesh(refine_landmarks=True)
 
-i = 0
-csv_file = open("data.csv", 'a')
-label = 'no'
+# i = 0
+# csv_file = open("data.csv", 'a')
+# label = 'no'
 
 for _ in range(100000000):
     pass
