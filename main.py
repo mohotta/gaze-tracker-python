@@ -45,33 +45,35 @@ while True:
             y = int(landmark.y * frame_h)
             cv2.circle(frame, (x, y), 3, (255, 0, 0))
 
+        dist_z = np.abs(landmarks[4].z)
+
         # eye1 - measures
         eye_1_w = np.abs(landmarks[33].x - landmarks[133].x)
         eye_1_h = np.abs(landmarks[159].y - landmarks[145].y)
-        eye_1_x_left = np.abs(landmarks[33].x - landmarks[471].x)/(eye_1_w)
-        eye_1_x_right = np.abs(landmarks[133].x - landmarks[469].x)/(eye_1_w)
-        eye_1_y_top = np.abs(landmarks[159].y - landmarks[470].y)/(eye_1_h)
-        eye_1_y_bottom = np.abs(landmarks[145].y - landmarks[472].y)/(eye_1_h)
+        eye_1_x_left = np.abs(landmarks[33].x - landmarks[471].x)/(eye_1_w*dist_z)
+        eye_1_x_right = np.abs(landmarks[133].x - landmarks[469].x)/(eye_1_w*dist_z)
+        eye_1_y_top = np.abs(landmarks[159].y - landmarks[470].y)/(eye_1_h*dist_z)
+        eye_1_y_bottom = np.abs(landmarks[145].y - landmarks[472].y)/(eye_1_h*dist_z)
 
         print("Eye 1: ", eye_1_x_left, eye_1_x_right, eye_1_y_top, eye_1_y_bottom)
 
         # eye2 - measures
         eye_2_w = np.abs(landmarks[362].x - landmarks[263].x)
         eye_2_h = np.abs(landmarks[386].y - landmarks[374].y)
-        eye_2_x_left = np.abs(landmarks[362].x - landmarks[476].x)/(eye_2_w)
-        eye_2_x_right = np.abs(landmarks[263].x - landmarks[474].x)/(eye_2_w)
-        eye_2_y_top = np.abs(landmarks[386].y - landmarks[475].y)/(eye_2_h)
-        eye_2_y_bottom = np.abs(landmarks[374].y - landmarks[477].y)/(eye_2_h)
+        eye_2_x_left = np.abs(landmarks[362].x - landmarks[476].x)/(eye_2_w*dist_z)
+        eye_2_x_right = np.abs(landmarks[263].x - landmarks[474].x)/(eye_2_w*dist_z)
+        eye_2_y_top = np.abs(landmarks[386].y - landmarks[475].y)/(eye_2_h*dist_z)
+        eye_2_y_bottom = np.abs(landmarks[374].y - landmarks[477].y)/(eye_2_h*dist_z)
 
         print("Eye 2: ", eye_2_x_left, eye_2_x_right, eye_2_y_top, eye_2_y_bottom)
 
         # face
         face_h_width = np.abs(landmarks[366].x - landmarks[137].x)
-        face_left_width = np.abs(landmarks[4].x - landmarks[137].x)/face_h_width
-        face_right_width = np.abs(landmarks[4].x - landmarks[366].x)/face_h_width
+        face_left_width = np.abs(landmarks[4].x - landmarks[137].x)/(face_h_width*dist_z)
+        face_right_width = np.abs(landmarks[4].x - landmarks[366].x)/(face_h_width*dist_z)
         face_v_height = np.abs(landmarks[10].x - landmarks[152].x)
-        face_top_width = np.abs(landmarks[4].y - landmarks[10].y)/face_v_height
-        face_bottom_width = np.abs(landmarks[4].y - landmarks[152].y)/face_v_height
+        face_top_width = np.abs(landmarks[4].y - landmarks[10].y)/(face_v_height*dist_z)
+        face_bottom_width = np.abs(landmarks[4].y - landmarks[152].y)/(face_v_height*dist_z)
 
         print("face", face_left_width, face_right_width, face_top_width, face_bottom_width)
 
@@ -95,4 +97,3 @@ while True:
 
     cv2.imshow("opencv tracker", frame)
     cv2.waitKey(1)
-
